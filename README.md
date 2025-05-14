@@ -1,13 +1,14 @@
 # TDD with AI
 
-This project demonstrates Test-Driven Development (TDD) using AI, specifically JetBrains Junie. The goal is to create unit tests first and then have the AI generate the production code based on those tests.
+This project demonstrates Test-Driven Development (TDD) using AI, specifically JetBrains Junie. The goal is to define requirements in a natural language format (like Gherkin) and then have the AI generate the production code based on those requirements.
 
 ## Process
 
-1. Write unit tests that define the expected behavior
-2. Include a prompt in the test file for the AI
-3. Have the AI generate the production code
-4. Verify that the tests pass with the generated code
+1. Write requirements in text form (e.g., using Gherkin syntax) that define the expected behavior
+2. Generate test code from these requirements if necessary, or ideally execute tests directly from this syntax
+3. Include a prompt for the AI
+4. Have the AI generate the production code
+5. Verify that the requirements are met with the generated code
 
 ## Example: StringParser
 
@@ -22,7 +23,33 @@ The `StringParser` class should provide functionality to parse and analyze strin
 - The literal "\n" string should be treated as a word separator
 - Numbers should be counted as words
 
-### Test
+### Gherkin Example
+
+```gherkin
+Feature: Word Counter
+
+  Scenario: Counting words in different types of text
+    Given a StringParser
+    When I count words in an empty string
+    Then the count should be 0
+
+    When I count words in "Hello"
+    Then the count should be 1
+
+    When I count words in "One two three"
+    Then the count should be 3
+
+    When I count words in "Hello     World"
+    Then the count should be 2
+
+    When I count words in "Hello\nWorld"
+    Then the count should be 2
+
+    When I count words in "Hello 123 World"
+    Then the count should be 3
+```
+
+### Test (Generated from Requirements)
 
 ```kotlin
 // prompt: Implement StringParser#countWords method.
