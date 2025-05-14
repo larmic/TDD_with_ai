@@ -12,6 +12,8 @@ class StringParserTest {
         ", 0",
         "Hallo, 1",
         "Hallo Welt, 2",
+        "Hallo     Welt   , 2",
+        "Hallo\nWelt, 2",
         "Hallo Welt 1 2 3, 5",
     )
     fun `count words`(test: String, count: Int)  {
